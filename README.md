@@ -6,10 +6,14 @@ Typeon Mini Blogging Service
 # gem을 설치.
 sudo gem install jekyll
 
+# 윈도우에서 jekyll 테스트.
+#   - git bash 실행 - git에 포함된 스크립트.
+```
+
 # 테스트 실행.
 cd typeon.github.io
 jekyll serve -w
-```
+
 
 ## 블로그 작성하기.
 
