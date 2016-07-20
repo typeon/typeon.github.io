@@ -43,3 +43,5 @@ $ gcc -o bitmode_compile bitmode_compile.c -m32 && ./bitmode_compile
 __LP64__ not defined...
 p's sizeof is 4
 ```
+
+original source: [http://kaspyx.kr/78](http://kaspyx.kr/78)
