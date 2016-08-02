@@ -1,6 +1,6 @@
 name: TYPEON
 markdown: kramdown
-highlighter: true
+highlighter: rouge
 url:
 paginate: 8
 description:     South Korean Linux Server Programmer
