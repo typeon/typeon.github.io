@@ -1,12 +1,12 @@
 name: TYPEON
-markdown: redcarpet
+markdown: kramdown
 highlighter: true
 url:
 paginate: 8
 description:     South Korean Linux Server Programmer
 intro: I am ...
 logo:             logo.png
-disqus_shortname:
+disqus_shortname: typeon-github-io
 # url: http://gotchacode.com
 #Comment out url when working locally to resolve base urls correctly
 #url:
@@ -31,4 +31,4 @@ bing_verify:
 
 # Links to include in top navigation
 # For external links add external: true
-gems: [jekyll-paginate, redcarpet]
+gems: [jekyll-paginate]
