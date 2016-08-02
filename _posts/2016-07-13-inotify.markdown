@@ -6,10 +6,8 @@ categories: building
 ---
 
 jetbrain의 clion을 사용하기 시작하면서 처음으로 몇백건 이상의 파일을 포함하는
-프로젝트를 시작하였습니. 노란색으로 된 warning 창이 떠서 확인해 보니, 생소한 inotify 설정이라서
+프로젝트를 시작하였습니다. 노란색으로 된 warning 창이 떠서 확인해 보니, 생소한 inotify 설정이라서
 일순간 당황하였지만, 구글 검색을 통해 알아낸 내용은 다음과 같습니다.
-`ubuntu 16.04`에서 테스트 완료하였습니다.
-
 
 * Add the following line to either `/etc/sysctl.conf` file or a new file under `/etc/sysctl.d/` directory:
 
@@ -22,3 +20,5 @@ fs.inotify.max_user_watches = 524288
 ```
 sudo sysctl -p --system
 ```
+
+`ubuntu 16.04`에서 테스트 완료하였습니다.
