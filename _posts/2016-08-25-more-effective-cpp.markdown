@@ -124,3 +124,5 @@ try 블록과 예외지정은 꼭 필요한 부분에만 사용합니다.
 34.한 프로그램에서 C++와 C를 함께 사용하는 방법을 이해하자.
 
 35.C++언어의 최신 표준안과 표준 라이브러리에 대해 익숙해지자.
+
+- Original Source: [http://blog.daum.net/shuaihan/15481898](http://blog.daum.net/shuaihan/15481898)
