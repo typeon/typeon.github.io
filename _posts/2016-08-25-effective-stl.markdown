@@ -6,10 +6,13 @@ categories: c++
 ---
 
 **1.적재적소에 알맞은 컨테이너를 사용하자.**
+
 STL에는 표준,비표준을 포함하여 많은 컨테이너들이 존재하지만
-어떤 컨테이터를 어떻게 사용하느냐에 따라 그 알고리즘 복잡도가 상당히 달라진다. 항상 현재 접한 상황에 어떤 컨테이너가 가장 적당한지를 잘 판단하여 선택하라는 내용이 있다.
+어떤 컨테이터를 어떻게 사용하느냐에 따라 그 알고리즘 복잡도가 상당히 달라진다.
+항상 현재 접한 상황에 어떤 컨테이너가 가장 적당한지를 잘 판단하여 선택하라는 내용이 있다.
 
 **2."컨테이너에 독립적인 코드"를 만들려고 하지말자!**
+
 이 컨테이너 저 컨테이너 모두 적용될 수있는 클래스를 만들려하지말자. 쓸데없는 짓이란 것. STL컨테이너 사용시 typedef를 이용할것.
 
 ```
@@ -19,8 +22,9 @@ typedef std::list< string >::iterator  CListItr  ;
 코딩양이 줄어들고.. 컨테이너 타입을 바꿀 수밖에 없는 상황에 변경을 조금 용이하게 해준다.
 
 **3.STL 컨테이너이가 객체를 다룰때는 복사되어 들어가고 복사되어 나온다.**
-따라서 클래스의 복사생성자와 복사대입연산자는 깊은복사(deep copy)를 해야 한다.  그리고 일반 객체를 담는 컨테이너경우 slice문제도 발생되는데 이것저것 다 따지기 귀찮으면 그냥 포인터를 담는 컨테이너를 선언해라.
 
+따라서 클래스의 복사생성자와 복사대입연산자는 깊은복사(deep copy)를 해야 한다.
+그리고 일반 객체를 담는 컨테이너경우 slice문제도 발생되는데 이것저것 다 따지기 귀찮으면 그냥 포인터를 담는 컨테이너를 선언해라.
 포인터는 스마트 포인터로 담아주면 딱 좋다.
 
 ```
@@ -36,7 +40,9 @@ if(c.empty()) // good
 ```
 
 **5.단일 요소를 단위로 동작하는 멤버 함수보다 요소의 범위를 단위로 동작하는 멤버함수가 더 낫다.**
-삽입연산자(inserter, back_inserter, front_inserter) 를 사용해서 복사 대상범위를 지정하는 copy 함수는 모두 범위 멤버 함수로 바꾸어야 한다. 단일 요소 멤버함수는 메모리 할당자이 요구도 많고 객체 복사도 빈번하며, 불필요한 연산도 더 자주 발생한다.
+
+삽입연산자(inserter, back_inserter, front_inserter) 를 사용해서 복사 대상범위를 지정하는 copy 함수는 모두 범위 멤버 함수로 바꾸어야 한다.
+단일 요소 멤버함수는 메모리 할당자이 요구도 많고 객체 복사도 빈번하며, 불필요한 연산도 더 자주 발생한다.
 
 - 범위 생성 : container::container(inputiterator begin, inputiterator end);
 - 범위 삽입 : void container::insert(iterator pos, inputiterator begin, inputiterator end) ;
@@ -50,6 +56,7 @@ if(c.empty()) // good
 **6.C++ 컴파일러의 어이없는 분석 결과를 조심하자.**
 
 **7.new로 생성한 포인터의 컨테이너를 사용할 때는 스마트 포인터를 사용하자.**
+
 단 auto_ptr은 그 특성상 사용하면 안된다.
 
 ```
@@ -81,10 +88,16 @@ typedef std::list< CObjectPtr > CListPtr ;
 **12.STL 컨테이너의 쓰레드 안정성에 대한 기대는 현실에 맞추어 가지자.**
 
 **13.동적으로 할당된 배열보다는 vector와 string이 낫다.**
-배열을 직접 동적으로 할당하려고 쓸데 없는 일(메모리 해제등)에 온 신경을 써야한다. vector와 string은 자동으로  내부적으로 동적배열 처럼 메모리를 할당하고 해제해준다.
+
+배열을 직접 동적으로 할당하려고 쓸데 없는 일(메모리 해제등)에 온 신경을 써야한다.
+vector와 string은 자동으로  내부적으로 동적배열 처럼 메모리를 할당하고 해제해준다.
 
 **14.reserve는 필요없이 메모리가 재할당되는 것을 막아준다.**
-STL컨테이너(시퀀스컨테이너)의 메모리 관리는 데이터 삽입시 메모리 가 부족한경우 2의 증가율 만큼 용량을 늘리도록 구현하고 있다. 또한 재할당시 컨테이너가 원래 가지고있었던 메모리에 저장된 모든 요소 데이터를 새 메모리에 복사하고 원래의 메모리에 저장된 모든 객체를 소멸시키고 원래의 매모리를 해제한다.이런 할당-소멸-해제는 상당한 비용이 든다. 따라서 미리 어느정도의 메모리를 할당해 둠으로써 재할당의 회수를 최소화시켜주는것이 바로 reserve이다.
+
+STL컨테이너(시퀀스컨테이너)의 메모리 관리는 데이터 삽입시 메모리가 부족한 경우 2의 증가율 만큼 용량을 늘리도록 구현하고 있다.
+또한 재할당시 컨테이너가 원래 가지고있었던 메모리에 저장된 모든 요소 데이터를 새 메모리에 복사하고 원래의 메모리에 저장된
+모든 객체를 소멸시키고 원래의 매모리를 해제한다. 이런 할당-소멸-해제는 상당한 비용이 든다.
+따라서 미리 어느정도의 메모리를 할당해 둠으로써 재할당의 회수를 최소화시켜주는것이 바로 reserve이다.
 
 - size() : 현재 컨테이너에 들어있는 효소의 개수를 리턴
 - capacity() : 해당 컨테이너에 할당된 메모리로 담을 수 있는 요소의 개수를 리턴
@@ -120,6 +133,7 @@ string().swap(s) ; // s를 완전히 비우고 용량을 최소화한다.
 ```
 
 **18.vecto은 절대 사용하지 말자!**
+
 대신 deque 또는 bitset 을 사용하도록 한다.
 
 **19.상등관계와 동등 관계의 차이를 파악한다.**
@@ -196,8 +210,11 @@ vector::iterator i(ri.base()) ;
                   i
 ```
 
-* reverse_iterator 인 ri 로 지정된 위치에 대한 요소 삽입(요소의 삽입은 반보자가 가리키는 위치의 바로 앞에서 이루어진다.)을 흉내내려면 ri.base()를 사용한다. 요소 삽입이 목적이라면 ri와 ri.base()는 동등하면 ri.base()는 ri에 정확히 대응되는 반복자이다
-* reverse_iterator 인 ri 로 지정된 위치에 대한 요소 삭제를 흉내내려면 ri.base()의 앞에 있는 위치에서 삭제를 수행해야 한다. 요소 삭제가 목적이라면 ri와 ri.base()는 동등하지 않으며 , ri.base()는 ri에 대응되는 iterator가 아니다. ( v.erase(++ri).base()) -> ri를 전진한후 ri.base()를 호출하면 원래 삭제하려는 ri의 위치와 동등해진다.)
+* reverse_iterator 인 ri 로 지정된 위치에 대한 요소 삽입(요소의 삽입은 반보자가 가리키는 위치의 바로 앞에서 이루어진다.)을 흉내내려면 ri.base()를 사용한다.
+  요소 삽입이 목적이라면 ri와 ri.base()는 동등하면 ri.base()는 ri에 정확히 대응되는 반복자이다
+* reverse_iterator 인 ri 로 지정된 위치에 대한 요소 삭제를 흉내내려면 ri.base()의 앞에 있는 위치에서 삭제를 수행해야 한다.
+  요소 삭제가 목적이라면 ri와 ri.base()는 동등하지 않으며 , ri.base()는 ri에 대응되는 iterator가 아니다.
+  (v.erase(++ri).base()) -> ri를 전진한후 ri.base()를 호출하면 원래 삭제하려는 ri의 위치와 동등해진다.)
 
 **29.문자 단위의 입력에는 istreambuf_iterator 이 사용도 적절하다.**
 
@@ -215,14 +232,15 @@ istreambuf_iterator 는 스트림 버퍼 안에서 다음위치에 있는 문자
 **31.정렬시 선택사항들을 제대로 파악해 놓자.**
 
 * sort : 내림차순또는 오른차순으로 모든 데이터를 정렬한다. (vector, string, deque 만사용가능)
-* stable_sort :  정렬시 순서 유지 정렬(stable sort)는 정렬 알고리즘에서 두개의 값이 동등하다면 정렬 후에도 그 둘의 상대적인 위치가 변하지 않는다.  (vector, string, deque 만사용가능)
+* stable_sort :  정렬시 순서 유지 정렬(stable sort)는 정렬 알고리즘에서 두개의 값이 동등하다면 정렬 후에도 그 둘의 상대적인 위치가 변하지 않는다.
+  (vector, string, deque 만사용가능)
 * partial_sort : 만약 상위 20위까지만 정렬하고 싶을때 부분 정렬이 사용한다. (vector, string, deque 만사용가능)
-``partial_sort (w.begin(), w.begin() +20, w.end(), compare);``
+  ``partial_sort (w.begin(), w.begin() +20, w.end(), compare);``
 * nth_element : 만약 상위 20위까지 순서에 상관없이 얻고싶을때 사용한다.
-``nth_element (w.begin(), w.begin() +20, w.end(), compare) ;``
+  ``nth_element (w.begin(), w.begin() +20, w.end(), compare) ;``
 * partition :  주어진 범위에 있는 요소의 위치를 재배열하는데, 어떤 기준에 맞는 요소는 모두 그 범위의 앞부분에 몰아놓는다.
-``vector::iterator partition_pos = partition(w.begin(), w.end(), compare()) ;``
-partition_pos 는 compare에 만족하지 않는 객체중 처음 것을 가리키는 반복자를 반환한다.
+  ``vector::iterator partition_pos = partition(w.begin(), w.end(), compare()) ;``
+  partition_pos 는 compare에 만족하지 않는 객체중 처음 것을 가리키는 반복자를 반환한다.
 
 ```
 만족 하는 것들.........|만족 안하는 것들.................
@@ -298,9 +316,10 @@ public:
 **40.함수자 클래스는 어댑터(not1, not2, bind1st, bind2nd) 적용이 가능하게 하자.**
 
 함수나 함수객체에 어댑터(not1, not2, bind1st, bind2nd) 를 사용하려면  몇가지 typedef가 정의되어 있어야 함께 사용할 수 있다.
-이 typedef를 정의하기 위해서 기본적인 std::unary_function나 std::binray_function을 상속시키면 된다.
+이 typedef를 정의하기 위해서 기본적인 `std::unary_function``나 `std::binray_function`을 상속시키면 된다.
 
 `std::unary_function`나 `std::binray_function`을 상속하는경우:
+
 ```
 // 비포인터 타입은 const와 참조자를 빼는것이 관례이다
 struct WidgetNNameCompare: std::binary_function<Widget, Widget, bool) {
