@@ -1,7 +1,9 @@
 ## typeon.github.io
-Typeon Mini Blogging Service
+
+Typeon Mini Blogging Service [http://typeon.github.io](http://typeon.github.io)
 
 ## 설치 및 테스트 방법.
+
 ```
 # gem을 설치.
 sudo gem install jekyll
@@ -10,10 +12,12 @@ sudo gem install jekyll
 #   - git bash 실행 - git에 포함된 스크립트.
 ```
 
-# 테스트 실행.
+## 테스트 실행.
+
+```
 cd typeon.github.io
 jekyll serve -w
-
+```
 
 ## 블로그 작성하기.
 
