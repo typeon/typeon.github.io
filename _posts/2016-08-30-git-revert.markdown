@@ -7,17 +7,19 @@ categories: git
 
 ## 되돌리기.
 
-- commit 되돌리기.
+### commit 되돌리기.
 
 -> 이건 아직 이해가 안되서 추가하지 않는다.
 
-- 파일을 unstage로 바꾸기.
+### 파일을 unstage로 바꾸기.
+
 ```
 $ git reset HEAD source.rb
 
 ```
 
-- modified 파일 되돌리기.
+### modified 파일 되돌리기.
+
 ```
 $ git checkout -- source.rb
 ```
