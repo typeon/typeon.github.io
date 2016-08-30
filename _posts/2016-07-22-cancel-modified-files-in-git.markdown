@@ -2,7 +2,7 @@
 layout: post
 title:  "cancel modified files in git clone."
 date:   2016-07-22 16:30:00 +0900
-categories: util
+categories: git
 ---
 
 ### reset 처리.
