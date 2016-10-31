@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "using MSYS with MinGW"
+title:  "long long, long double printf format"
 date:   2016-09-07 10:20:00 +0900
 categories: c++
 ---
